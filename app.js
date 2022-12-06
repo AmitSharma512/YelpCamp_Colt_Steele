@@ -21,10 +21,11 @@ const campgrounds = require("./routes/campgrounds");
 const reviews = require("./routes/reviews");
 
 const MongoStore = require("connect-mongo")(session);
+const db_url = process.env.DB_URL;
 
 mongoose
   .connect(
-    "mongodb+srv://admin:NidDp8znqUsVRlPz@cluster0.hdnup2y.mongodb.net/?retryWrites=true&w=majority"
+    db_url
   )
   .then(() => {
     console.log("Mongo Connected");
@@ -38,7 +39,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 const store = new MongoStore({
-  url : "mongodb+srv://admin:NidDp8znqUsVRlPz@cluster0.hdnup2y.mongodb.net/?retryWrites=true&w=majority",
+  url : db_url,
   secret : "thisshouldbeabettersecret",
   touchAfter : 24 * 60 * 60,
 })
