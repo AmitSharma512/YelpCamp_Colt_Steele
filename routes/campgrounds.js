@@ -31,7 +31,7 @@ catchAsync(campgrounds.showCampground)
     catchAsync(campgrounds.UpdateCampground)
   )
 .delete(
-    catchAsync(isloggedin ,isAuthor , catchAsync(campgrounds.DeleteCampground))
+    (isloggedin ,isAuthor , catchAsync(campgrounds.DeleteCampground))
   );
 
   router.get("/:id/edit", isloggedin , isAuthor , catchAsync(campgrounds.renderEditForm));
